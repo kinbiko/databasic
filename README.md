@@ -36,13 +36,21 @@ The goal of this exercise is to learn, and be confident in developing using:
 
 ### Lesson 1: Baby steps
 
-- Get used to IntelliJ
 - Create a simple Java project through IntelliJ
 - Make and massage your project's .gitignore file.
 - Requirements gathering
 - Design from requirements
 - Learn the importance of feedback
 - Start naive implementation
+
+### Lesson 2: Nukem
+
+- Revisit naive implementation and the review experience
+- Kill the naive implementation with experience, and without pride.
+- Refactoring - when is it OK to start over?
+- Introducing JUnit
+- New requirements gathering
+- Less naive implementation in your own time
 
 ## Process
 
