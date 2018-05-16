@@ -51,7 +51,8 @@ The goal of this exercise is to learn, and be confident in developing using:
 - Learn the practices and processes with help from [me](https://github.com/kinbiko) during the guided sessions.
 - Practice in your own time by completing the challenge given for each lesson.
     - If you get stuck (for more than 5 non-consecutive hours of intensive study) create an issue on this repo, and I'll have a look.
-- Create a PR to this repo for review. The PR will be closed once any review comments have been addressed. The PR will not be merged as I use this repo to teach multiple people.
+- Create a PR to this repo for review after each lesson. The PR will be closed once any review comments have been addressed. The PR will not be merged as I use this repo to teach multiple people.
+- Schedule your next lesson when you feel you need it. The lesson plan is a finger-in-the-air best case scenario, and I am more than happy to repeat any previous topcis. If you ever feel behind on anything then that's my fault for giving a bad estimate - not yours.
 - Maintain a notebook of glossary and what you've learned. I am happy to review this for you as well. This repo will not contain much technical information.
 - Refer back to the [original README](https://github.com/kinbiko/databasic) regularly to check for updates.
 - Suggest improvements you want from these lessons in the form of GitHub issues on this repo.
