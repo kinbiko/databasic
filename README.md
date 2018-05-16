@@ -17,4 +17,12 @@ Requirements for database project
 1. preserve datatype on return
 
 
+# Objects in application:
+1. Main
+1. Inserter
+1. AutoIdGenerator
+1. Querier
+1. Stats
+1. CLI
+1. Printer
 
