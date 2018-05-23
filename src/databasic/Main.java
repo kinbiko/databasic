@@ -6,8 +6,12 @@ public class Main{
     public static void main(String[] args){
         System.out.println("Welcome to databasic!");
         Cli cli = new Cli();
+        Formatter formatter = new Formatter();
+
         if (args[0].equals("stats")){
             cli.stats();
         }
+        formatter.formatQuery(new Object());
+        formatter.formatInsert(new Id());
     }
 }
