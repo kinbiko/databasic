@@ -13,6 +13,7 @@ Requirements for database project
 1. return children of parent, or if value then value from a key  #clean order up
 1. no need for sorted returns
 1. preserve datatype on return
+1. CHECK: delet
 
 
 # Objects in application:
@@ -42,6 +43,8 @@ Requirements for database project
     1. string formatInsert(Id)
 1. Id
 1. JsonPath
+1. Deleter?
+    1. void deleteRecord(ID, JsonPath)?
 
 
 
