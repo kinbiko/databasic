@@ -1,19 +1,17 @@
 package databasic;
-import java.util.Scanner;
 
-public class Cli {
-    public void stats(){
+
+class Cli {
+    void stats(){
         System.out.println("The statistics on the database are: ");
     }
 
-    public void query(Id, JsonPath){
-        Querier.()
+    void query(Id id, JsonPath jsonpath){
+        System.out.println("Cli.query");
     }
 
-    public void insert(String)
-        Scanner scanner = new Scanner( System.in );
-        System.out.print( "What file would you like to insert into the database? " );
-        String insertInput = scanner.nextLine();
-        System.out.println("You have inserted " + insertInput + "into the database");
+    void insert(String string){
+        System.out.println("Cli.insert");
+    }
 
 }

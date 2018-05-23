@@ -1,8 +1,6 @@
 package databasic;
 
 
-public class Id {
-    private int idType;
+class Id {
 
-    public idType();
 }

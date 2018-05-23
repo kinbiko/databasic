@@ -3,5 +3,7 @@ package databasic;
 public class AutoIdGenerator {
     public int autoId;
 
-    Id generate()
+    Id generate(){
+        return  null;
+    }
 }
