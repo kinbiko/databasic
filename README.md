@@ -22,29 +22,40 @@ The goal of this exercise is to learn, and be confident in developing using:
   - Clean Code
   - Clean Architecture
 
-## Lessons
+## Increments
 
-### Lesson 0: Get started. Do this on your own.
+These are the key points I'd like to cover in the sessions - roughly in the order that they are listed.
 
-- Install Java 8 or higher
-- Install IntelliJ IDEA
+- Create GitHub account
+- Install:
+  - Java 8 or higher
+  - Git
+  - IntelliJ IDEA
 - Learn the Java syntax
-- Set up a GitHub account
+    - Classes and objects
+    - Methods
+    - Variables
+    - Fields
+    - Conditionals
+    - Loops
+- Learn Git/GitHub basic theory
+    - Fork
+    - Clone
+    - Adding and committing
+    - Push
+    - Creating pull requests
+- Learn markdown basics
+    - Headers
+    - Lists
 - Fork this repository to your user
 - Clone your user's repository to your computer.
 - Delete all but the first line of this README, and push.
-
-### Lesson 1: Baby steps
-
 - Create a simple Java project through IntelliJ
 - Make and massage your project's .gitignore file.
 - Requirements gathering
 - Design from requirements
 - Learn the importance of feedback
 - Start naive implementation
-
-### Lesson 2: Nukem
-
 - Revisit naive implementation and the review experience
 - Kill the naive implementation with experience, and without pride.
 - Refactoring - when is it OK to start over?
