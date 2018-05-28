@@ -1,0 +1,22 @@
+{
+    "id":1,
+    "filepath":"/Users/unityspace/Documents/Java/databasic/src/databasic/json_example.json",
+    "name":"Thomas",
+    "character":"P",
+    "value":"42",
+    "pi": 3.141,
+    "triangle": "3 + 4j",
+    "chopin" : ["one", 2, 3.1415, 4],
+    "message": ["key1":1, "key2":"two", "key3":3.14159],
+    "valid":"true",
+    "nested": {
+              "post_id": "123456789012_123456789012",
+              "actor_id": "1234567890",
+              "picOfPersonWhoPosted": "http://example.com/photo.jpg",
+              "nameOfPersonWhoPosted": "Jane Doe",
+              "message": "Sounds cool. Can't wait to see it!",
+              "likesCount": "2",
+              "comments": [],
+              "timeOfPost": "1234567890"
+            }
+}
