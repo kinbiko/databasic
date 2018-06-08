@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15074c29-2be2-409a-aefc-3b6461698c95" name="Default" comment="First code approximation">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/DatabasicCommands.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/InputProcessor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Insert.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Query.java" />
+    <list default="true" id="15074c29-2be2-409a-aefc-3b6461698c95" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -430,6 +424,14 @@
       <option name="presentableId" value="Default" />
       <updated>1528389779656</updated>
     </task>
+    <task id="LOCAL-00001" summary="First code approximation">
+      <created>1528495026497</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1528495026497</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
