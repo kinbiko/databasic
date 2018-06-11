@@ -2,37 +2,43 @@
 * https://docs.oracle.com/javase/tutorial/essential/environment/cmdLineArgs.html
 * https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java
 * Bold text https://stackoverflow.com/a/29109958 - http://ascii-table.com/ansi-escape-sequences.php
+* Read files https://examples.javacodegeeks.com/core-java/java-8-read-file-line-line-example/
 */
+import java.nio.file.Files;
+import java.util.stream.Stream;
+import java.nio.file.Paths;
+import java.io.IOException;
+
+
 class InputProcessor {
         void validateInput(String[] args) {
                 if (args.length > 0 ) {
 
-                        // We could compare here when args[0] be help
-                        //We compare if args[0] match with insert command
-                        if (args[0].equals(DataBasicCommands.insert.name())){   // https://stackoverflow.com/a/9858135
-                                // We check then 2nd argument exists
-                                if( args.length == 2) {
+                        // We check help command
+                        if (args[0].equals(DataBasicCommands.help.name())) {   // https://stackoverflow.com/a/9858135
+                            help();
 
-                                        if ( !args[1].isEmpty() ){
-
-                                                System.out.println("Path to JSON file args[1] = " + args[1]);
-
-                                                // Then we check the validity of the path, this can be in a method
-
-                                        } else {
-                                                System.out.println("Error: \u001B[1mYou have to specify a correct path\u001B[0m");
-
-                                        }
-
+                        // Else we check insert command
+                        } else if (args[0].equals(DataBasicCommands.insert.name())){   // https://stackoverflow.com/a/9858135
+                            //System.out.println("Inserting...: " + args.length);
+                            // We check then 2nd argument exists
+                            if( args.length == 2) {
+                                if (!args[1].isEmpty()) {
+                                    // Then we check the if the path is valid, this can be in a method
+                                    //System.out.println("Path to JSON file args[1] = " + args[1]);
+                                    openFile(args[1]);
+                                    /*if(){
+                                    } else {
+                                       System.out.println("Error: \u001B[1mYou have to specify a correct path\u001B[0m");
+                                    }*/
                                 } else {
-                                        System.out.println("Error: \u001B[1mInvalid number of arguments\u001B[0m");
-                                        this.help();
+                                    System.out.println("Error: \u001B[1mInvalid number of arguments\u001B[0m");
+                                    help();
                                 }
-                        // Else we compare if match with the query format
-                        } else {
-                                // this is the default error if the query isn't well formed
-                                System.out.println("Error: \u001B[1m"+ args[0] + "\u001B[0m Invalid command\n");
-                                this.help();
+                            } else {
+                                System.out.println("Error: \u001B[1mYou have to provide a valid path to JSON file\u001B[0m");
+                                help();
+                            }
                         }
 
                         /* For using switch I must set up options like constants, so "insert" would be redundant here
@@ -56,11 +62,33 @@ class InputProcessor {
                                 System.out.println("arg = " + arg);
                         }*/
 
-
+                // Else we take it as a query
                 } else {
-                        System.out.println("Error: \u001B[1mYou have to provide an argument.\u001B[0m");
-                        this.help();
+
+                    System.out.println("Querying...");
+                    // Check if match with query format
+
+                    // this is the default error if the query isn't well formed
+                    /*System.out.println("Error: \u001B[1m"+ args[0] + "\u001B[0m Invalid command");
+                    this.help();
+                    */
+
                 }
+
+        }
+
+        private static void openFile(String fileName) {
+            System.out.println("fileName = " + fileName);
+            try {
+                Stream<String> lines = Files.lines(Paths.get(fileName));
+                System.out.println("<!-----Read all lines as a Stream-----!>");
+                lines.forEach(System.out :: println);
+                lines.close();
+
+            } catch(IOException io) {
+                System.out.println("ERROR IN OPENING FILE");
+                io.printStackTrace();
+            }
 
         }
 

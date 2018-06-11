@@ -68,10 +68,10 @@ Example:
 Having the following JSON Document:
 ```json
 {
-	"ID": 001, 
+	"ID": 1, 
 	"person": {
 		"name": "Javier",
-		"age": 35,		
+		"age": 35	
 	},
 	"datetime": "2002-10-02T15:00:00Z"
 
@@ -80,7 +80,7 @@ Having the following JSON Document:
 
 The query:
 ```shell
-databasic 001 person.name
+databasic 1 person.name
 ```
 
 Returns:
