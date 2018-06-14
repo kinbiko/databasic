@@ -1,81 +1,89 @@
 # DataBasic
 
-Learn Java and other software engineering practices by building a simple database.
-The goal of this exercise is to learn, and be confident in developing using:
+## REQUIREMENTS
 
-- Java
-- IntelliJ IDEA
-- JUnit
-- Git & GitHub
-- Markdown
-- Software Design
-- Clear technical communication
-- StackOverflow to find answers to questions
-- Library documentation
-- Javadoc
-- Unix command line basics
-- Object Oriented Design
-- JSON
-- Technical development practices
-  - Refactoring
-  - TDD
-  - Clean Code
-  - Clean Architecture
+1. Compatible only with *nix operating systems. 
+1. The software will run in CLI mode.
+1. The software must read the data that will be inside of the database.
+1. Data should be inserted into a database that will be persisted.
+1. The software should allow to query the database according to the following structure:
+	```shell
+	databasic <id> <json-path>
+	``` 
+	Where `<id>` is a number and `<json-path>` is of the form `“a.b”`
+1. The ID field of the database will be an odd integer number greater than or equal to 1.
+1. The input file inserted into the database system should be a JSON file provided in the following way:
+	```shell
+	databasic insert <path-to-file>
+	``` 
+1. The datatypes supported in the database will be:
+	- Integer
+	- Float
+	- String
+	- Null
+	- Boolean
+	- datetime 
+	- {Binary} (Under consideration) 
+1. The datetime datatype inside the JSON input/output file will in in UTC and under the RFC-3999 standard.
+1. When inserting a document, the registered ID for that document will printed to the stdout.
+1. When doing a query, the JSON/value for that document and the JSON path will be printed to the stdout.
 
-## Increments
 
-These are the key points I'd like to cover in the sessions - roughly in the order that they are listed.
+## DESIGN 
 
-- Create GitHub account
-- Install:
-  - Java 8 or higher
-  - Git
-  - IntelliJ IDEA
-- Learn the Java syntax
-    - Classes and objects
-    - Methods
-    - Variables
-    - Fields
-    - Conditionals
-    - Loops
-- Learn Git/GitHub basic theory
-    - Fork
-    - Clone
-    - Adding and committing
-    - Push
-    - Creating pull requests
-- Learn markdown basics
-    - Headers
-    - Lists
-- Fork this repository to your user
-- Clone your user's repository to your computer.
-- Delete all but the first line of this README, and push.
-- Create a simple Java project through IntelliJ
-- Make and massage your project's .gitignore file.
-- Requirements gathering
-- Design from requirements
-- Learn the importance of feedback
-- Start naive implementation
-- Revisit naive implementation and the review experience
-- Kill the naive implementation with experience, and without pride.
-- Refactoring - when is it OK to start over?
-- Introducing JUnit
-- New requirements gathering
-- Less naive implementation in your own time
+### Insert
+About the input the software must:
 
-## Process
+- In the main method, open the JSON file provided in the path considering the following:
+	- Validate the number of parameters received be 1, ignoring others and/or returning an error message to the user.
+	- Validate the path is valid.
+	- Test the format of the file given in the path corresponds to JSON, else print an error message to the user.
+	- Check if file given in the path exists and open it, if there is some error print an error message to the user
+- Generate an ID field for the inserted document/object and once data has been saved to database, print the ID to the user.
+- Write/Update the saved file in a storing location (static). For example: `~/.databasic/`
 
-### Do
+This is an JSON sample of the datatypes we are going to be using:
+```json
+{
+ "Integer": 12,
+ "String": "hello world",
+ "Null": null,
+ "Boolean": true,
+ "Datetime": "2002-10-02T15:00:00Z"
+}
+```
 
-- Learn the practices and processes with help from [me](https://github.com/kinbiko) during the guided sessions.
-- Practice in your own time by completing the challenge given for each lesson.
-    - If you get stuck (for more than 5 non-consecutive hours of intensive study) create an issue on this repo, and I'll have a look.
-- Create a PR to this repo for review after each lesson. The PR will be closed once any review comments have been addressed. The PR will not be merged as I use this repo to teach multiple people.
-- Schedule your next lesson when you feel you need it. The lesson plan is a finger-in-the-air best case scenario, and I am more than happy to repeat any previous topcis. If you ever feel behind on anything then that's my fault for giving a bad estimate - not yours.
-- Maintain a notebook of glossary and what you've learned. I am happy to review this for you as well. This repo will not contain much technical information.
-- Refer back to the [original README](https://github.com/kinbiko/databasic) regularly to check for updates.
-- Suggest improvements you want from these lessons in the form of GitHub issues on this repo.
+### Query
+When there is a query:
 
-### Don't do
+- In main method, read the given query provided in the CLI considering the following:
+	- Validate the number of parameters received be 2, ignoring others and/or returning an error message to the user.
+	- Validate the first given parameter "ID" corresponds to a number (odd positive integer).
+	- Validate the second given parameter "JSON PATH" be in the form “a.b”, else print an error message to the user.	
+- Open the databasic JSON file, if there is some error print an error message to the user.
+- Make a search in the JSON document using the given ID (first parameter) and JSON PATH.
+- Print the query result to the user.
 
-- Don't look at other forks of this repo for a solution to your problem. This isn't work; The metric of success is not business value or time. This isn't school; The metric of success is not a grade. The metric of success is ambiguous, but undeniable, and it is *experience*. Which comes from being stuck and making bad choices. Get stuck. Make bad choices.
+Example:
+
+Having the following JSON Document:
+```json
+{
+	"ID": 1, 
+	"person": {
+		"name": "Javier",
+		"age": 35	
+	},
+	"datetime": "2002-10-02T15:00:00Z"
+
+}
+```
+
+The query:
+```shell
+databasic 1 person.name
+```
+
+Returns:
+`“Javier”`
+
