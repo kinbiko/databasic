@@ -3,20 +3,20 @@
 ## REQUIREMENTS
 
 1. Compatible only with *nix operating systems. 
-2. The software will run in CLI mode.
-3. The software must read the data that will be inside of the database.
-4. Data should be inserted into a database that will be persisted.
-5. The software should allow to query the database according to the following structure:
+1. The software will run in CLI mode.
+1. The software must read the data that will be inside of the database.
+1. Data should be inserted into a database that will be persisted.
+1. The software should allow to query the database according to the following structure:
 	```shell
 	databasic <id> <json-path>
 	``` 
 	Where `<id>` is a number and `<json-path>` is of the form `“a.b”`
-6. The ID field of the database will be an odd integer number greater than or equal to 1.
-7. The input file inserted into the database system should be a JSON file provided in the following way:
+1. The ID field of the database will be an odd integer number greater than or equal to 1.
+1. The input file inserted into the database system should be a JSON file provided in the following way:
 	```shell
 	databasic insert <path-to-file>
 	``` 
-8. The datatypes supported in the database will be:
+1. The datatypes supported in the database will be:
 	- Integer
 	- Float
 	- String
@@ -24,9 +24,10 @@
 	- Boolean
 	- datetime 
 	- {Binary} (Under consideration) 
-9. The datetime datatype inside the JSON input/output file will in in UTC and under the RFC-3999 standard.
-10. When inserting a document, the registered ID for that document will printed to the stdout.
-11. When doing a query, the JSON/value for that document and the JSON path will be printed to the stdout.
+1. The datetime datatype inside the JSON input/output file will in in UTC and under the RFC-3999 standard.
+1. When inserting a document, the registered ID for that document will printed to the stdout.
+1. When doing a query, the JSON/value for that document and the JSON path will be printed to the stdout.
+
 
 ## DESIGN 
 

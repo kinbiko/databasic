@@ -1,112 +1,137 @@
-/*
-* https://docs.oracle.com/javase/tutorial/essential/environment/cmdLineArgs.html
-* https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java
-* Bold text https://stackoverflow.com/a/29109958 - http://ascii-table.com/ansi-escape-sequences.php
-* Read files https://examples.javacodegeeks.com/core-java/java-8-read-file-line-line-example/
-*/
-import java.nio.file.Files;
-import java.util.stream.Stream;
-import java.nio.file.Paths;
 import java.io.IOException;
-
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+//import com.fasterxml.jackson;
 
 class InputProcessor {
-        void validateInput(String[] args) {
-                if (args.length > 0 ) {
 
-                        // We check help command
-                        if (args[0].equals(DataBasicCommands.help.name())) {   // https://stackoverflow.com/a/9858135
-                            help();
+    /*
+    * Process the input args: help, insert or a query
+    * */
+    void validateInput(String[] args) {
 
-                        // Else we check insert command
-                        } else if (args[0].equals(DataBasicCommands.insert.name())){   // https://stackoverflow.com/a/9858135
-                            //System.out.println("Inserting...: " + args.length);
-                            // We check then 2nd argument exists
-                            if( args.length == 2) {
-                                if (!args[1].isEmpty()) {
-                                    // Then we check the if the path is valid, this can be in a method
-                                    //System.out.println("Path to JSON file args[1] = " + args[1]);
-                                    openFile(args[1]);
-                                    /*if(){
-                                    } else {
-                                       System.out.println("Error: \u001B[1mYou have to specify a correct path\u001B[0m");
-                                    }*/
-                                } else {
-                                    System.out.println("Error: \u001B[1mInvalid number of arguments\u001B[0m");
-                                    help();
-                                }
-                            } else {
-                                System.out.println("Error: \u001B[1mYou have to provide a valid path to JSON file\u001B[0m");
-                                help();
-                            }
-                        }
+        // Check commands
+        if (args[0].equals(DataBasicCommands.HELP.toString())) {
+            help();
+            return;
+        }
 
-                        /* For using switch I must set up options like constants, so "insert" would be redundant here
-                         and in the enum*/
-                        /*
-                        switch (args[0]){
-                                case "insert":
-                                        System.out.println("input ok");
-                                        break;
-                                case "help":
-                                        System.out.println("help");
-                                        break;
-                                default:
-                                        System.out.println("query");
+        if (args[0].equals(DataBasicCommands.INSERT.toString())) {
+            validateInsert(args);
+            return;
+        }
 
-                        }*/
+        // Default, make a query
+        // TODO: Validate and process the query
+        System.out.println("Querying...");
 
-                        /*Just for test purposes*/
-                        /*System.out.println("args.length = " + args.length);
-                        for (String arg:args) { // Foreach
-                                System.out.println("arg = " + arg);
-                        }*/
+    }
 
-                // Else we take it as a query
-                } else {
+    /*
+    * Validate insert command: insert <path-to-file>
+    * */
+    private void validateInsert(String[] args) {
 
-                    System.out.println("Querying...");
-                    // Check if match with query format
+        if (args.length == 2) {
+            processInsert(args[1]);
 
-                    // this is the default error if the query isn't well formed
-                    /*System.out.println("Error: \u001B[1m"+ args[0] + "\u001B[0m Invalid command");
-                    this.help();
-                    */
-
-                }
+        } else {
+            System.err.println("Error: You have to provide a path to JSON file");
+            help();
 
         }
 
-        private static void openFile(String fileName) {
-            System.out.println("fileName = " + fileName);
-            try {
-                Stream<String> lines = Files.lines(Paths.get(fileName));
-                System.out.println("<!-----Read all lines as a Stream-----!>");
-                lines.forEach(System.out :: println);
-                lines.close();
+    }
 
-            } catch(IOException io) {
-                System.out.println("ERROR IN OPENING FILE");
-                io.printStackTrace();
+    /*
+    * Process inserted path to JSON file
+    * */
+    private void processInsert(String arg) {
+
+        // Corner case: Provided file is empty ""
+        if (arg.isEmpty()) {
+            System.err.println("Error: The provided path is empty");
+            help();
+            return;
+
+        }
+
+        openFile(arg);
+
+    }
+
+    /*
+    * Open JSON file in given path
+    * For the moment this calls the method to put into an ArrayList
+    * and print in console
+    * TODO: Load the file to a single line from the beginning (now doing it in several steps)
+    * */
+    private void openFile(String fileName) {
+
+        String jsonFile = "";
+
+        try {
+            List<String> lines = getLines(fileName);
+            for (String line : lines) {
+                jsonFile += line;
+
             }
+            System.out.println("jsonFile = " + jsonFile);
 
+        } catch (IOException io) {
+            System.err.println("Error: cannot open file: " + fileName);
+            io.printStackTrace();
         }
 
-        private void help() {
-                System.out.println("\nDatabasic");
-                System.out.println("-------------------");
-                System.out.println("Available commands are:");
-                // To print all the enum values
-                System.out.println(java.util.Arrays.asList(DataBasicCommands.values())+"\n");  // https://stackoverflow.com/a/14413618
-                System.out.println("\u001B[1m" + DataBasicCommands.insert.name()+ " <path-to-file>\u001B[0m     Inserts an registry into databasic.");
-                System.out.println("\u001B[1m<id> <json-path>\u001B[0m          Executes a query to databasic.");
-                System.out.println("\u001B[1mhelp\u001B[0m                      Displays this help and exit");
-                System.out.println("-------------------");
-        }
+    }
 
+    /*
+    * Save lines into an ArrayList List
+    * */
+    private List<String> getLines(String fileName) throws IOException {
 
-       /* void processInput(String input){
-                System.out.println("Your input = " + input);
-        }*/
+        Stream<String> linesStream = Files.lines(Paths.get(fileName));
+        List<String> lines = new ArrayList<>();
+
+        System.out.println("<!-----Read all lines as a Stream-----!>");
+        linesStream.forEach(s -> lines.add(s));
+        linesStream.close();
+        return lines;
+
+    }
+
+    /*
+    * Shows help
+    * */
+    private void help() {
+
+        String insertCommand = makeBold(DataBasicCommands.INSERT.name() + " <path-to-file>") + "    Inserts an registry into databasic.";
+        String queryCommand = makeBold("<id> <json-path>") + "         Executes a query to databasic.";
+        String helpCommand = makeBold("help") + "                     Displays this help and exit";
+
+        System.out.println("\nDatabasic");
+        System.out.println("-------------------");
+        System.out.println("Available commands are:");
+        System.out.println(java.util.Arrays.asList(DataBasicCommands.values()) + "\n");
+        System.out.println(insertCommand);
+        System.out.println(queryCommand);
+        System.out.println(helpCommand);
+        System.out.println("-------------------");
+
+    }
+
+    /*
+    * Format text in bold
+    * */
+    private String makeBold(String s) {
+
+        String boldedString = "\u001B[1m";
+        boldedString += s + "\u001B[0m";
+        return boldedString;
+
+    }
 
 }
