@@ -1,11 +1,11 @@
 package databasic;
 
 
-class Id{
+class DatabasicId {
     private long id;
 
-    Id() {
-        id = 0;
+    DatabasicId(long id) {
+        this.id = id;
     }
 
     public long getId() {

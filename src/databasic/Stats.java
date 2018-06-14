@@ -1,7 +1,7 @@
 package databasic;
 
 class Stats {
-    void generateStats(){
+    void generateStats() {
         //number of records
         //
         System.out.println("Stats.generateStats");
