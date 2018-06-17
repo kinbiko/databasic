@@ -17,6 +17,11 @@ for(int num : numList) {
 ```
 
 ## OOP Design
+Look around you...
+The real-world objeccts in the area around you (such as computer, clock, mirror, air-conditioner, shelves, door, etc.) have two major charateristics:
+- state (qualities, how it looks) ==> in OOP: stores its state in fields
+- behaviour (things it can do)    ==> in OOP: expose behaviour in methods
+
 Classes are the basic units of programming in the object-oriented paradigm, and are used as templates to create objects.
 A class in Java may consist of five components:
 - Fields
@@ -97,7 +102,7 @@ The new operator is followed by a call to the constructor of the class whose ins
 new Human();
 ```
 
-When you do not add a constructor to a class, the Java compiler adds one for you. The constructor that is added by the Java compiler is called a default constructor. The default constructor accepts no arguments. The name of the constructor of a class is the same as the class name.
+When you do not add a constructor to a class, the Java compiler adds one for you. The constructor that is added by the Java compiler is called a `default constructor`. The default constructor accepts no arguments. The name of the constructor of a class is the same as the class name.
 
 *The general syntax for a method declaration is of the form:*
 ```java

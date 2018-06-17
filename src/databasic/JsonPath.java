@@ -14,6 +14,7 @@ class JsonPath {
         if (jsonPath.contains(" ")) {
             throw new RuntimeException("Please enter a JsonPath, spaces in the string is invalid!");
         }
+
     }
 
     private void checkEmpty(String jsonPath) {
