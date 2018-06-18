@@ -111,6 +111,8 @@ When you do not add a constructor to a class, the Java compiler adds one for you
 }
 ```
 
+TIP: Write the methods you wish you had - just pretend they exist. Write the method's name - then hotkey (opt + Return) to generate.
+
 #### `this` keyword is a reference to the current instance of a class. It can be used only in the context of an instance.
 ```java
 public class ThisTest1 {
@@ -187,9 +189,11 @@ class ClockTest{
 |                  |                                                |
 | shift + F6       | Rename                                         |
 | cmd + K          | Git commit                                     |
+| cmd + N          | Generate... (can automate getters/setters...)  |
 
 # Description of how I learned about unit testing
 ### TDD cycle           ==> fail, pass, refactor
+
 *Refactoring = amplify clarity of intent while minimizing duplication.*
 
 After creating a class, use (ctrl + shift + T) to create a test class. So far I have been using JUnit4 for testing.

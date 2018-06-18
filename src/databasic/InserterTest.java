@@ -9,7 +9,7 @@ public class InserterTest {
 
     @Test
     public void canInsertFile() {
-        File target = new File();
-        Assert.assertEquals(target, );
+        String target = "text.txt";
+        Assert.assertEquals(target, "text.txt");
     }
 }

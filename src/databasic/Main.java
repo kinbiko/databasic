@@ -17,7 +17,7 @@ public class Main {
         Querier querier = new Querier();
 
         if (args[0].equals("stats")) {
-                            cli.stats();
+            cli.stats();
         } else if (args[0].equals("query")) {
             cli.stats();
         }
