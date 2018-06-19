@@ -39,7 +39,7 @@ public static void main(String[] args) {
 
 Fields and methods are also known as members of the class. Classes and interfaces can also be members of a class.
 
-*It is a convention (not a rule or a requirement) in java to start a class name with an uppercase letter and capitalize the subsequent words, for example, Human, Table, ColorMonitor, etc. the name of fields and methods should start with a lowercase letter and the subsequent words should be capitalized, for example, name, firstName, maxDebitAmount, etc.*
+*It is a convention (not a rule or a requirement) in java to start a class name with an uppercase letter and capitalize the subsequent words, for example, Human, Table, SumOfTriangles, etc. the name of fields and methods should start with a lowercase letter and the subsequent words should be capitalized, for example, name, firstName, maxDebitAmount, etc.*
 
 #### The general syntax for declaring a class in Java is:
 ```java
