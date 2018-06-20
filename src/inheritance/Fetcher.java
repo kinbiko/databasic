@@ -1,4 +1,4 @@
-package Inheritance;
+package inheritance;
 
 public interface Fetcher {
     String fetch();

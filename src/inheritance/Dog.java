@@ -1,15 +1,14 @@
-package Inheritance;
+package inheritance;
 
-public class Cat extends Animal implements Fetcher, Speaker{
-
+public class Dog extends Animal implements Fetcher, Speaker{
     @Override
     public void speak() {
-        System.out.println("Mieouw");
+        System.out.println("bark bark bark");
     }
 
     @Override
     public String fetch() {
-        return "Mouse";
+        return "Stick";
     }
 
     public void performActions(){
