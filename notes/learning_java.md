@@ -245,16 +245,24 @@ public void canWriteAndGetJsonPath() {
 ### Exception handling
 - An execption is an object
 - An exception in Java is an object that encapsulates the details of an error.
-- the use of `try/catch` blocks is useful to catch issues
+- the use of `try/catch` blocks is useful to catch issues:
+I'm going to
+`TRY` this risky thing
+and I'm going to
+`CATCH` myself if I fall
+
 
 ```java
 try {
     // Code for the try block goes here
+    // do risky thing
 }
 catch (ExceptionClassName parameterName) {
     // Exception handling code goes here
+    // try to recover
 }
 ```
+And excecption is an object of type Exception
 
 
 ---
