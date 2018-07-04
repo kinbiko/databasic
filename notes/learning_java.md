@@ -183,7 +183,7 @@ class ClockTest{
 | alt + Return     | Error/syntax improvement                       |
 | alt + Space      | Definition                                     |
 | cmd + alt + L    | Improve formatting                             |
-| ctrl + shift + T | Create test                                    |
+| cmd + shift + T  | Create test                                    |
 | ctrl + alt + R   | Run class/test                                 |
 | cmd + B          | Go to Declaration (more info)                  |
 |                  |                                                |
@@ -201,7 +201,7 @@ class ClockTest{
 
 *Refactoring = amplify clarity of intent while minimizing duplication.*
 
-After creating a class, use (ctrl + shift + T) to create a test class. So far I have been using JUnit4 for testing.
+After creating a class, use (cmd + shift + T) to create a test class. So far I have been using JUnit4 for testing.
 *An initial test will look like this:*
 ```java
 public void class <<TestName>> {
