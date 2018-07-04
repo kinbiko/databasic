@@ -345,6 +345,7 @@ Inheritance: "A is-a B"
 - keyword <<abstract>> is added to the class
 - Superclasses that are meant to be extended by other classes (other classes can inherit from that class)
 - you can't instantiate them (the construction must be done through the subclasses)
+*Subtlety: You CAN have a constructor in an abstract class, but it is only invoked if you call super(arg1, arg2, ...) in a child constructor.*
 - as soon as there is one abstract method - the class must become abstract.
 - the abstract methods have no braces, no implementation, and just ends in a semicolon.
 - a partially completed class
