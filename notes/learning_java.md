@@ -235,7 +235,6 @@ A good convention is to name a test class with in the form `givenX_doY`:
     }
 ```
 
----
 At the start of the test, create a `target` variable:
 ```java
 <<Object type in class to test>> target = new <<Object type in class to test>>();
@@ -324,7 +323,7 @@ public class SimpleExpectedExceptionTest {
  }
 ---
 
-package Inheritance;
+package inheritance;
 
 public class Main {
     public static void main(String[] args) {
