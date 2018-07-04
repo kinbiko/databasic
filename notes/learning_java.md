@@ -231,11 +231,10 @@ A good convention is to name a test class with in the form `givenX_doY`:
 ```java
 @Test
     void givenNullObject_NoResults() {
-        Assertions.assertEquals(<<expected>>, <<input>>);
+        Assertions.assertEquals(<<expected>>, <<actual>>);
     }
 ```
----
-NOTE: TCWP not understanding RG's comment: `s/input/actual`
+
 ---
 At the start of the test, create a `target` variable:
 ```java
