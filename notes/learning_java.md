@@ -369,6 +369,7 @@ Inheritance: "A is-a B"
 - interfaces can implement any number of interfaces.
 - Interface naming convention: start with Can-, end with -able
 - recommended not to make interfaces with constants. (put the final constants in a class of constants)
+
 ```java
 public class Messages {
     public static class Format {
@@ -376,6 +377,7 @@ public class Messages {
         public static final String NO_RESULTS = "No results";
     }
 }
+// to access the contants call Messages.Format.STRING_IS_EMPTY
 ```
 
 
@@ -455,7 +457,7 @@ Queue : Typically order elements in FIFO order except exceptions
 Deque : Elements can be inserted and removed at both ends. Allows
         both LIFO and FIFO.
 
-Map : Contains Key value pairs. Doesn't allow duplicates.  Example
+Map : Contains Key value pairs. Doesn't allow duplicate keys.  Example
       implementation are HashMap and TreeMap.
       TreeMap implements SortedMap.
 
