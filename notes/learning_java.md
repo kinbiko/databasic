@@ -128,7 +128,7 @@ public class ThisTest1 {
 - A constructor does not have a return type.
 *The general syntax for a constructor declaration is:*
 ```java
-<<Modifiers>> <<Constructor Name>>(<<parameters list>>) throws <<Exceptions list>> {
+<<Modifiers>> <<Constructor Name>>(<<parameters list>>){
         // Body of constructor goes here
 }
 ```
