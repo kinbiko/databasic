@@ -1,18 +1,25 @@
 package generics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import inheritance.Cat;
+import java.beans.
 
 public class Main {
     public static void main(String[] args) {
-        List<String> strings = new ArrayList<>();
-        strings.add("aergaer");
-        strings.clear();
-        Map<String, Object> hashMap = new HashMap<>();
-        hashMap.put("abc", ");
-        hashMap.get();
+        Cat cat1 = new Cat();
+        Cat cat2 = new Cat();
+        Cat cat3 = new Cat();
 
+        PetOwner<Cat> owner = new PetOwner<>();
+        owner.own(cat1);
+        owner.own(cat2);
+
+        Farm<Cat> catFarm = new Farm<>();
+        catFarm.addAnimal(cat1);
+        catFarm.addAnimal(cat2);
+        catFarm.addAnimal(cat3);
+
+        catFarm.butcherRandomAnimal();
+
+        owner.makeAnimalsAct();
     }
 }

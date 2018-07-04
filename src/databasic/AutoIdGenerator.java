@@ -1,6 +1,5 @@
 package databasic;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -14,9 +13,7 @@ public class AutoIdGenerator {
         long idLong = findId(fileContents);
         long incrementedId = incrementId(idLong);
         write(incrementedId);
-
-        DatabasicId id = new DatabasicId(incrementedId);
-        return id;
+        return new DatabasicId(incrementedId);
     }
 
     private String read(String path) {

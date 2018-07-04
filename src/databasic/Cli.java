@@ -3,9 +3,6 @@ package databasic;
 
 class Cli {
 
-    Cli() {
-    }
-
     void stats() {
         System.out.println("The statistics on the database are: ");
     }

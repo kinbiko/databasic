@@ -64,7 +64,7 @@ class FormatterTest {
     void givenUnicodeChar_ReturnArray() {
         runFormatQueryTest("[\"♪\", \"ツ\", \"♕\", \"∂\"]", new char[]{'♪', 'ツ', '♕', '∂'});
     }
-    //TODO create test for non UTF-8 Encoding
+    //TODO create test for nested JSON objects (Maps)
 
     private void runFormatQueryTest(String expected, Object input) {
         assertEquals(expected, target.formatQuery(input));

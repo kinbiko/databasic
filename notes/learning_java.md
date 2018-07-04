@@ -23,12 +23,9 @@ The real-world objeccts in the area around you (such as computer, clock, mirror,
 - behaviour (things it can do)    ==> in OOP: expose behaviour in methods
 
 Classes are the basic units of programming in the object-oriented paradigm, and are used as templates to create objects.
-A class in Java may consist of five components:
+A class in Java may consist of two components:
 - Fields
-- Methods
-- Constructors
-- Static initializers
-- Instance initializers
+- Methods (and Constructors)
 
 #### The main() method serves as the entry point for a Java application:
 ```java
@@ -39,7 +36,10 @@ public static void main(String[] args) {
 
 Fields and methods are also known as members of the class. Classes and interfaces can also be members of a class.
 
-*It is a convention (not a rule or a requirement) in java to start a class name with an uppercase letter and capitalize the subsequent words, for example, Human, Table, SumOfTriangles, etc. the name of fields and methods should start with a lowercase letter and the subsequent words should be capitalized, for example, name, firstName, maxDebitAmount, etc.*
+NOTE: TCWP not understanding RG's comment: `s/members/member variables`
+
+*It is a convention (not a rule or a requirement) in java to start a class name with an uppercase letter and capitalize the subsequent words (`CamelCase`), for example, Human, Table, SumOfTriangles, etc. the name of fields and methods should start with a lowercase letter and the subsequent words should be capitalized (`pascalCase`), for example, name, firstName, maxDebitAmount, etc.*
+
 
 #### The general syntax for declaring a class in Java is:
 ```java
@@ -55,6 +55,8 @@ Fields and methods are also known as members of the class. Classes and interface
 | package-level                 | In the same package                       |
 | protected                     | Same package or descendant in any package |
 | public                        | Everywhere                                |
+
+*It's important to note that these are cascading permissions. E.g. package-private (not package-level btw) is also accessible from within the same class. Similarly, protected is also visible by classes in the same package, etc.*
 
 Fields of a class represent properties (also called attributes) of objects of that class. Suppose every object of human class has two properties: a name and a gender. The human class should include declarations of two fields: one to represent name and one to represent gender.
 
@@ -84,11 +86,11 @@ The Human class declares two fields: name and gender. Both fields are of the Str
 class Human {
         String name;        // An instance variable
         String gender;      // An instance variable
-        static long count;  // A class variable because of the static modifier
+        static long count;  // A static field because of the static modifier
 }
 ```
 
-A class variable is also known as a static variable. An instance variable is also known as a non-static variable.
+A class variable is also known as a static field. An instance/member variable is also known as a non-static variable - or field.
 
 *Create an instance of a class:*
 ```java
@@ -96,6 +98,7 @@ new <<Call to Class Constructor>>;
 ```
 
 The new operator is followed by a call to the constructor of the class whose instance is being created. The new operator creates an instance of a class by allocating the memory on heap.
+*I don't really need to worry about memory allocation at the moment because Java handles this with the garbage collector.*
 
 *The following statement creates an instance of the Human class:*
 ```java
@@ -131,6 +134,9 @@ public class ThisTest1 {
         // Body of constructor goes here
 }
 ```
+
+*Pro tip: Don't ever throw exceptions in your constructor. It's a sign that the constructor is doing more than just setting up it's initial state. (e.g. making database connections).*
+
 
 *Example:*
 ```java
@@ -181,6 +187,7 @@ class ClockTest{
 | cmd + alt + L    | Improve formatting                             |
 | ctrl + shift + T | Create test                                    |
 | ctrl + alt + R   | Run class/test                                 |
+| cmd + B          | Go to Declaration (more info)                  |
 |                  |                                                |
 | cmd + alt + C    | Extract constant (on variable)                 |
 | cmd + alt + V    | Extract variable (that is used mulitple times) |
@@ -199,24 +206,27 @@ class ClockTest{
 After creating a class, use (ctrl + shift + T) to create a test class. So far I have been using JUnit4 for testing.
 *An initial test will look like this:*
 ```java
-public class <<TestName>> {
+public void class <<TestName>> {
     @Test
     // Test goes here
 }
 ```
 
+*Important: tests must be public void*
+
 ### The JUnit Assert class provides the following methods:
 | Method            | Function                                                              |
 |-------------------|-----------------------------------------------------------------------|
 | assertEquals      | Asserts that two objects (or primitives) are equal.                   |
-| assertArrayEquals | Asserts that two arrays have the same items.                          |
 | assertTrue        | Asserts that a statement is true.                                     |
 | assertFalse       | Asserts that a statement is false.                                    |
 | assertNull        | Asserts that an object reference is null.                             |
 | assertNotNull     | Asserts that an object reference is not null.                         |
+|  *uncommon assertions below*                                                              |
 | assertSame        | Asserts that two object references point to the same instance.        |
 | assertNotSame     | Asserts that two object references do not point to the same instance. |
 | assertThat        | Asserts that an object matches the given conditions.                  |
+| assertArrayEquals | Asserts that two arrays have the same items.                          |
 
 
 A good convention is to name a test class with in the form `givenX_doY`:
@@ -226,7 +236,9 @@ A good convention is to name a test class with in the form `givenX_doY`:
         Assertions.assertEquals(<<expected>>, <<input>>);
     }
 ```
-
+---
+NOTE: TCWP not understanding RG's comment: `s/input/actual`
+---
 At the start of the test, create a `target` variable:
 ```java
 <<Object type in class to test>> target = new <<Object type in class to test>>();
@@ -240,6 +252,16 @@ public void canWriteAndGetJsonPath() {
     String result = target.getJsonPath();
     Assertions.assertEquals("number.value", result);
 }
+```
+
+*Make sure your tests are properly writen before you utilise them!
+Trying to get the code to pass a bad test (unaware this might be the cause of EVERY SINGLE PROBLEM!) will drive you crazy!
+In the following example, I'm trying to find the unique element in a array of type double. Notice that the answer should be `3.0`, but that the test asserts that it should be `1.0`!*
+```java
+ @Test
+    public void FindUniqueElementTest() {
+        assertEquals(1.0, FindUniqueElement.finder(new double[]{0.0, 0.0, 3.0, 0.0}), 0.0000000000001 );
+    }
 ```
 
 ### Exception handling
@@ -262,9 +284,179 @@ catch (ExceptionClassName parameterName) {
     // try to recover
 }
 ```
-And excecption is an object of type Exception
-
+An excecption is an object that extends the 'Exception' class.
 
 ---
+`Quiz`: Look into the difference between RuntimeException and Exception to understand why we wrap some of our exceptions in runtime exceptions
+
+`Error` and `Exception` both extend `Throwable`. Errors cannot be handled, however there is an opportunity to handle Excecptions.
+`Error` along with `RuntimeException` & their subclasses are `unchecked exceptions`. All other `Exception` classes are `checked exceptions`.
+`Checked exceptions`: They extend the java.lang.Exception class. A program can recover from these, and you are expected to check for these exceptions by using the `try-catch-finally` or `throw` it back to the `caller`.
+`Unchecked exceptions`: They extend the java.lang.RuntimeException.
+RuntimeException: a more specific Exception (this could help during debugging), and usually the result of invalid user input.
+The main reason one would use exception wrapping is to prevent the code further up the call stack from having to know about every possible exception in the system.
+RuntimeException, is reserved for exceptions that indicate incorrect use of an API.
+Unchecked exceptions should be reserved for system errors which cannot/should not be recovered.
+
+
+`Quiz`: find a more elegant solution for verifying that exceptions are being thrown in JUnit tests, using an @Annotation.
+
+The following techniques exist for testing exceptions:
+– "Old school" try-catch idiom
+– @Test annotation with expected element
+– JUnit ExpectedException rule
+– Lambda expressions (Java 8+)
+
+In JUnit, rules (@Rule) can be used as an alternative or an addition to fixture setup and
+cleanup methods: @Before, @After, @BeforeClass, and @AfterClass. ExpectedException rule is meant for verification that code throws a specific exception. The rule must be declared as public field annotated with @Rule annotation:
+
+public class SimpleExpectedExceptionTest {
+     @Rule
+     public ExpectedException thrown= ExpectedException.none();
+
+     @Test
+     public void throwsNothing() {
+         // no exception expected, none thrown: passes.
+     }
+
+     @Test
+     public void throwsExceptionWithSpecificType() {
+         thrown.expect(NullPointerException.class);
+         throw new NullPointerException();
+     }
+ }
+---
+
+package Inheritance;
+
+public class Main {
+    public static void main(String[] args) {
+        Animal cat = new Cat();
+        Animal dog = new Dog();
+        cat.speak();
+        dog.speak();
+
+    }
+}
+
+# 4 Pillars of OOP
+- Abstraction, polymorphism, inheritance & encapsulation.
+Inheritance: "A is-a B"
+
+
+# Extending classes: Abstract classes and Interfaces
+## *`Abstract classes:`*
+- keyword <<abstract>> is added to the class
+- Superclasses that are meant to be extended by other classes (other classes can inherit from that class)
+- you can't instantiate them (the construction must be done through the subclasses)
+- as soon as there is one abstract method - the class must become abstract.
+- the abstract methods have no braces, no implementation, and just ends in a semicolon.
+- a partially completed class
+- you must have a subclass that implements it.
+- Subclasses must conform to the contracts set up by the abstract class
+- the abstract methods in the abstract class must be used when being implemented as child classes (compile time safety)
+- when you know the methods, but you might not know how they are to be implemented
+- cannot be marked as final
+- in UML, abstract classes and abstract methods are in *italic*
+- recommended not to use abstract classes where possible.
+
+
+## `Interfaces:`
+- keyword <<interface>> is used instead of class
+- must be public or package access scope
+- you cannot create an instance of an interface
+- therefor, no constructor
+- A contract that all the methods in an interface will be implemented
+- A hierarchy of interfaces can be created
+- a class can implement as many interfaces as needed
+- interfaces can implement any number of interfaces.
+- Interface naming convention: start with Can-, end with -able
+- recommended not to make interfaces with constants. (put the final constants in a final class)
+- All fields in an interface are implicitly public, static, and final - their use is redundant.
+- The general (incomplete) syntax for declaring an interface is:
+<modifiers> interface <interface-name> {
+        Constant-Declaration
+        Method-Declaration
+        Nested-Type-Declaration
+}
+
+# Generics
+
+With `generics`, you tell the compiler what types of objects are permitted in each collection. The compiler inserts casts for you automatically and tells you at compile time if you try to insert an object of the wrong type. This results in programs that are both safer and clearer, but these benefits come with complications.
+
+A class or interface whose declaration has one or more *type parameters* is a *generic* class or interface.
+
+A List interface can have a single type parameter, E, representing the element type of the list. The name of the interface is now List<E> (read “list of E”), but people often call it *List* for short. Generic classes and interfaces are collectively known as `generic types`.
+
+Each generic type defines a set of *parameterized types*, which consist of the class or interface name followed by an angle-bracketed list of *actual type parameters* corresponding to the generic type’s formal type parameters. For example, List<String> (read “list of string”) is a parameterized type representing a list whose elements are of type String.
+
+It is an unwritten convention that type parameter names are one character, and to use T to indicate that the parameter is a type, E to indicate that the parameter is an element, K to indicate that the parameter is a key, N to indicate the parameter is a number, and V to indicate that the parameter is a value.
+
+`Unbounded wildcard types`: If you want to use a generic type but you don’t know or care what the actual type parameter is, you can use a question mark instead. For example, the unbounded wildcard type for the generic type Set<E> is Set<?> (read “set of some type”). It is the most general parameterized Set type, capable of holding any set.
+
+## Generics: Terms and Examples
+
+| Term                    | Example                          |
+|-------------------------|----------------------------------|
+| Parameterized type      | List<String>                     |
+| Actual type parameter   | String                           |
+| Generic type            | List<E>                          |
+| Formal type parameter   | E                                |
+| Unbounded wildcard type | List<?>                          |
+| Raw type                | List                             |
+| Bounded type parameter  | <E extends Number>               |
+| Recursive type bound    | <T extends Comparable<T>>        |
+| Bounded wildcard type   | List<? extends Number>           |
+| Generic method          | static <E> List<E> asList(E[] a) |
+| Type token              | String.class                     |
+
+
+# Collections
+
+Java provides Collection Framework which defines several classes and interfaces to represent a group of objects as a single unit.
+
+The Collection interface (java.util.Collection) and Map interface (java.util.Map) are two main root interfaces of Java collection classes.
+
+`Hierarchy of Collection Framework` (core interfaces only)
+
+```
+             Collection                Map
+         /     /    \      \            |
+        /      /      \     \           |
+     Set    List    Queue  Dequeue   SortedMap
+     /
+    /
+ SortedSet
+```
+---
+
+```
+Collection : Root interface with basic methods like add(), remove(),
+             contains(), isEmpty(), addAll(), ... etc.
+
+Set : Doesn't allow duplicates. Example implementations of Set
+      interface are HashSet (Hashing based) and TreeSet (balanced
+      BST based). Note that TreeSet implements SortedSet.
+
+List : Can contain duplicates and elements are ordered. Example
+       implementations are LinkedList (linked list based) and
+       ArrayList (dynamic array based)
+
+Queue : Typically order elements in FIFO order except exceptions
+        like PriorityQueue.
+
+Deque : Elements can be inserted and removed at both ends. Allows
+        both LIFO and FIFO.
+
+Map : Contains Key value pairs. Doesn't allow duplicates.  Example
+      implementation are HashMap and TreeMap.
+      TreeMap implements SortedMap.
+
+The difference between Set and Map interface is, in Set we have only
+keys, but in Map, we have key value pairs.
+```
+
+---
+
 Markdown -> HTML:   https://dillinger.io/
 Tables:             https://www.tablesgenerator.com/markdown_tables

@@ -1,19 +1,18 @@
 # DataBasic
 Requirements for database project
 
-1. JSON structure
-1. Document oriented database (flat-file hierarchy)
-1. inserting
-1. auto-ID, returns value when created
-1. datatypes to include in database: strings, character, integers, float, complex, arrays, hashes, null, booleans.
-1. how would they call it? CLI.
-1. syntax of instruction: databasic insert <filepath (JSON file)>
-1. databasic stat
-1. databasic queries -> based on (Id && JsonPath) find value
-1. return children of parent, or if value then value from a key  #clean order up
-1. no need for sorted returns
-1. preserve datatype on return
-1. CHECK: delet
+1. Data is stored using JSON objects.
+1. The database schema is of type: Document oriented database (flat-file hierarchy).
+1. The user should be able to insert a JSON object.
+1. When a JSON object is inserted, it should generate an auto-ID value.
+1. The datatypes to include in the database: strings, character, integers, float, complex, arrays, hashes, null, booleans.
+1. A CLI will be used as UI.
+1. The general syntax of instruction at the CLI will be: databasic insert <filepath (JSON file)>
+1. The command <<databasic stat>> should return statistics on the whole database.
+1. A databasic query can be made using the auto-Id or a JsonPath.
+1. Return children of parent, or if value then value from a key.
+1. There is no need for returns to be sorted.
+1. Databasic should preserve datatype on return.
 
 
 # Objects in application:
@@ -43,8 +42,6 @@ Requirements for database project
     1. string formatInsert(Id)
 1. Id
 1. JsonPath
-1. Deleter?
-    1. void deleteRecord(ID, JsonPath)?
 
 
 
