@@ -355,7 +355,7 @@ Inheritance: "A is-a B"
 - when you know the methods, but you might not know how they are to be implemented
 - cannot be marked as final
 - in UML, abstract classes and abstract methods are in *italic*
-- recommended not to use abstract classes where possible.
+- Prefer using interfaces over abstract classes where possible.
 
 
 ## `Interfaces:`
