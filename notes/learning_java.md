@@ -351,7 +351,7 @@ Inheritance: "A is-a B"
 - a partially completed class
 - If you want to make use of a sublass then you must have a subclass that implements it.
 - Subclasses must conform to the contracts set up by the abstract class
-- the abstract methods in the abstract class must be used when being implemented as child classes (compile time safety)
+- the abstract methods in the abstract class must be implemented as child classes (compile time safety) ...unless the children too are abstract.
 - when you know the methods, but you might not know how they are to be implemented
 - cannot be marked as final
 - in UML, abstract classes and abstract methods are in *italic*
