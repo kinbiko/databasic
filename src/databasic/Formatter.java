@@ -1,12 +1,14 @@
 package databasic;
 
 class Formatter {
+
+
     String formatQuery(Object object) {
         if (object == null) {
-            return "No results";
+            return NO_RESULTS;
         }
         if (object == "") {
-            return "String Contents: Empty String";
+            return STRING_IS_EMPTY;
         }
 
         if (object instanceof Object[]) {

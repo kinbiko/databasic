@@ -368,7 +368,17 @@ Inheritance: "A is-a B"
 - a class can implement as many interfaces as needed
 - interfaces can implement any number of interfaces.
 - Interface naming convention: start with Can-, end with -able
-- recommended not to make interfaces with constants. (put the final constants in a final class)
+- recommended not to make interfaces with constants. (put the final constants in a class of constants)
+```java
+public class Messages {
+    public static class Format {
+        public static final String STRING_IS_EMPTY = "String Contents: Empty String";
+        public static final String NO_RESULTS = "No results";
+    }
+}
+```
+
+
 - All fields in an interface are implicitly public, static, and final - their use is redundant.
 - The general (incomplete) syntax for declaring an interface is:
 <modifiers> interface <interface-name> {
