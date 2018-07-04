@@ -319,7 +319,7 @@ public class SimpleExpectedExceptionTest {
          // no exception expected, none thrown: passes.
      }
 
-     @Test
+     @Test(expected = NullPointerException.class)
      public void throwsExceptionWithSpecificType() {
          thrown.expect(NullPointerException.class);
          throw new NullPointerException();
@@ -455,6 +455,25 @@ Map : Contains Key value pairs. Doesn't allow duplicates.  Example
 The difference between Set and Map interface is, in Set we have only
 keys, but in Map, we have key value pairs.
 ```
+
+
+# Casting
+
+class A {}
+class B extends A{
+    public void methodThatExistsOnlyOnB() {
+    }
+}
+class Whatev {
+    public static void main(String[] args) {
+        A obj = new B();
+        //....
+        if (obj instanceof B) {
+            ((B) obj).methodThatExistsOnlyOnB();
+        }
+    }
+}
+
 
 ---
 
