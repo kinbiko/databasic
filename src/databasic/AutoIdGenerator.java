@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class AutoIdGenerator {
-    public int autoId;
 
     DatabasicId generate() {
         String fileContents = read("currentid");
