@@ -349,7 +349,7 @@ Inheritance: "A is-a B"
 - as soon as there is one abstract method - the class must become abstract.
 - the abstract methods have no braces, no implementation, and just ends in a semicolon.
 - a partially completed class
-- you must have a subclass that implements it.
+- If you want to make use of a sublass then you must have a subclass that implements it.
 - Subclasses must conform to the contracts set up by the abstract class
 - the abstract methods in the abstract class must be used when being implemented as child classes (compile time safety)
 - when you know the methods, but you might not know how they are to be implemented
@@ -473,6 +473,6 @@ class Whatev {
 
 
 ---
-
+GIT: git add .;git commit -m "review comment: constructors in abstract classes";git push
 Markdown -> HTML:   https://dillinger.io/
 Tables:             https://www.tablesgenerator.com/markdown_tables
