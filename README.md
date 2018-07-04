@@ -42,7 +42,3 @@ Requirements for database project
     1. string formatInsert(Id)
 1. Id
 1. JsonPath
-
-
-
-
